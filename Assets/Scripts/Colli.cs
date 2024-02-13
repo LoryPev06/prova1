@@ -22,7 +22,7 @@ public class Colli : MonoBehaviour{
         }
     }
     private void lost(){
-        FindAnyObjectByType<GameManager>().lose();
+        FindAnyObjectByType<GameManager>().Lose();
     }
     private void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.CompareTag("Wall")){

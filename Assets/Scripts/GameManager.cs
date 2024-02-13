@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour{
         worldPosition.z = -1f;
         worldPosition.y = 3.5f;
         lastFind = maxFind;
-        spawnNew();
+        SpawnNew();
     }
     private void Update(){
         if(lastFind != maxFind){
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour{
                 currentGameObject.transform.position = worldPosition;
             }
         }else{
-            Invoke(nameof(spawnNew), .5f);
+            Invoke(nameof(SpawnNew), .5f);
         }
 
         if(Touchscreen.current.primaryTouch.press.wasReleasedThisFrame && canS){
@@ -53,21 +53,21 @@ public class GameManager : MonoBehaviour{
                 currentGameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
                 currentGameObject = null;
                 canS = false;
-                Invoke(nameof(resetClick), 1);
-                Invoke(nameof(spawnNew), .5f);
+                Invoke(nameof(ResetClick), 1);
+                Invoke(nameof(SpawnNew), .5f);
             }
         }
 
     }
-    private void spawnNew(){
+    private void SpawnNew(){
         if(currentGameObject == null){
-            currentGameObject = Instantiate(chooseGameObject(), worldPosition, Quaternion.identity);
+            currentGameObject = Instantiate(ChooseGameObject(), worldPosition, Quaternion.identity);
             currentGameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             currentGameObject.transform.parent = parent.transform;
         }
-        CancelInvoke(nameof(spawnNew));
+        CancelInvoke(nameof(SpawnNew));
     }
-    private GameObject chooseGameObject(){
+    private GameObject ChooseGameObject(){
         float rand = UnityEngine.Random.value;
         int maxIterations = maxFind < gameObjects.Length / 2 ? maxFind : gameObjects.Length / 2;
         for(int i = 1; i < maxIterations; i++){
@@ -79,13 +79,13 @@ public class GameManager : MonoBehaviour{
         return gameObjects[0];
 
     }
-    private void resetClick(){
+    private void ResetClick(){
         canS = true;
     }
-    public void addScore(int id){
+    public void AddScore(int id){
         score += (int)Mathf.Pow(id * 3, 1.5f);
     }
-    public void setMax(int tag){
+    public void SetMax(int tag){
         if(tag > maxFind){
             maxFind = tag;
         }
@@ -97,9 +97,12 @@ public class GameManager : MonoBehaviour{
         foreach(Transform child in parent.transform){
             Destroy(child.gameObject);
         }
-        spawnNew();
+        SpawnNew();
     }
-    public void lose(){
+    public void Lose(){
 
+    }
+    private void ShowStory(int id){
+        
     }
 }

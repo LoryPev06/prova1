@@ -20,13 +20,13 @@ public class CollisionManager : MonoBehaviour{
                     p = Instantiate(p, meanPosition, Quaternion.identity);
                     p.GetComponent<Colli>().addForc();
                     p.GetComponent<Colli>().canHit = true;
-                    FindAnyObjectByType<GameManager>().setMax(int.Parse(p.gameObject.tag));
+                    FindAnyObjectByType<GameManager>().SetMax(int.Parse(p.gameObject.tag));
                     p.transform.parent = parent.transform;
                 }
                 Destroy(obj1);
                 Destroy(obj2);
                 
-                FindAnyObjectByType<GameManager>().addScore(id);
+                FindAnyObjectByType<GameManager>().AddScore(id);
             }
         }
     }
