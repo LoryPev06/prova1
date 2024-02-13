@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class Colli : MonoBehaviour{
     public bool destroy = false;
     public float radius = 1f;
-    public int wall = 0;
     public bool canHit = false;
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag(tag)){
@@ -14,9 +13,6 @@ public class Colli : MonoBehaviour{
                 //FindAnyObjectByType<PlayScript>().AddReward(int.Parse(tag));
             }
         }
-        if(other.gameObject.CompareTag("Wall")){
-            wall++;
-        }
         if(other.gameObject.CompareTag("death")){
             Invoke(nameof(Lost), 3f);
         }
@@ -25,9 +21,6 @@ public class Colli : MonoBehaviour{
         FindAnyObjectByType<GameManager>().Lose();
     }
     private void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.CompareTag("Wall")){
-            wall--;
-        }
         if(other.gameObject.CompareTag("death")){
             CancelInvoke();
         }
