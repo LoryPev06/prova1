@@ -18,10 +18,10 @@ public class Colli : MonoBehaviour{
             wall++;
         }
         if(other.gameObject.CompareTag("death")){
-            Invoke(nameof(lost), 3f);
+            Invoke(nameof(Lost), 3f);
         }
     }
-    private void lost(){
+    private void Lost(){
         FindAnyObjectByType<GameManager>().Lose();
     }
     private void OnTriggerExit2D(Collider2D other){
@@ -32,7 +32,7 @@ public class Colli : MonoBehaviour{
             CancelInvoke();
         }
     }
-    public void addForc(){
+    public void AddForc(){
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach(Collider2D hi in hits){
             Vector2 direction = hi.transform.position - transform.position;

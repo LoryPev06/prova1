@@ -18,7 +18,7 @@ public class CollisionManager : MonoBehaviour{
                     GameObject p = FindAnyObjectByType<GameManager>().gameObjects[id];
                     Vector3 meanPosition = (obj1.transform.position + obj2.transform.position) / 2;
                     p = Instantiate(p, meanPosition, Quaternion.identity);
-                    p.GetComponent<Colli>().addForc();
+                    p.GetComponent<Colli>().AddForc();
                     p.GetComponent<Colli>().canHit = true;
                     FindAnyObjectByType<GameManager>().SetMax(int.Parse(p.gameObject.tag));
                     p.transform.parent = parent.transform;
