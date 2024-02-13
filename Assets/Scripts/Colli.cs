@@ -10,7 +10,6 @@ public class Colli : MonoBehaviour{
             CollisionManager collisionManager = FindAnyObjectByType<CollisionManager>();
             if (collisionManager != null && canHit){
                 collisionManager.HandleCollision(gameObject, other.gameObject, destroy);
-                //FindAnyObjectByType<PlayScript>().AddReward(int.Parse(tag));
             }
         }
         if(other.gameObject.CompareTag("death")){
