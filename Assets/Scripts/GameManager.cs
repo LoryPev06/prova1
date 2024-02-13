@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour{
     public Camera mainCamera;
     public GameObject[] gameObjects;
     public GameObject currentGameObject;
+    public GameObject story;
     public Text storyText;
     public Text text;
     public int score;
@@ -25,11 +26,12 @@ public class GameManager : MonoBehaviour{
         worldPosition.y = 3.5f;
         lastFind = maxFind;
         SpawnNew();
+        ShowStory(1);
     }
     private void Update(){
         if(lastFind != maxFind){
             FindAnyObjectByType<UnhideThings>().Unhide(maxFind);
-            // cose che darà il nuovo coso in base a cosa abbiamo trovato
+            ShowStory(maxFind);
             lastFind = maxFind;
         }
         text.text = score.ToString();
@@ -103,6 +105,32 @@ public class GameManager : MonoBehaviour{
 
     }
     private void ShowStory(int id){
-        
+        story.SetActive(true);
+        string text1 = "";
+        canS = false;
+        switch(id){
+            case 1:
+                text1 = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis corporis dolores voluptate minima omnis, aperiam sunt, facilis fuga exercitationem a vero consequuntur fugit ullam optio cumque architecto quia! Fugit, iure." + id.ToString();
+            break;
+            case 2:
+                text1 = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis corporis dolores voluptate minima omnis, aperiam sunt, facilis fuga exercitationem a vero consequuntur fugit ullam optio cumque architecto quia! Fugit, iure." + id.ToString();
+            break;
+            case 3:
+                text1 = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis corporis dolores voluptate minima omnis, aperiam sunt, facilis fuga exercitationem a vero consequuntur fugit ullam optio cumque architecto quia! Fugit, iure." + id.ToString();
+            break;
+            case 4:
+                text1 = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis corporis dolores voluptate minima omnis, aperiam sunt, facilis fuga exercitationem a vero consequuntur fugit ullam optio cumque architecto quia! Fugit, iure." + id.ToString();
+            break;
+            case 5:
+                text1 = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis corporis dolores voluptate minima omnis, aperiam sunt, facilis fuga exercitationem a vero consequuntur fugit ullam optio cumque architecto quia! Fugit, iure." + id.ToString();
+            break;
+        }
+        storyText.text = text1;
+    }
+
+    public void HideStory(){
+        storyText.text = "";
+        story.SetActive(false);
+        Invoke(nameof(ResetClick), .5f);
     }
 }

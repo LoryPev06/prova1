@@ -20,7 +20,7 @@ public class CollisionManager : MonoBehaviour{
                     p = Instantiate(p, meanPosition, Quaternion.identity);
                     p.GetComponent<Colli>().AddForc();
                     p.GetComponent<Colli>().canHit = true;
-                    FindAnyObjectByType<GameManager>().SetMax(int.Parse(p.gameObject.tag));
+                    FindAnyObjectByType<GameManager>().SetMax(int.Parse(p.tag));
                     p.transform.parent = parent.transform;
                 }
                 Destroy(obj1);
